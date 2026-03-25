@@ -148,7 +148,7 @@ class DNSMapper:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python dns_mapper.py <domain>")
+        print("Utilisation: python dns_mapper.py <domain>")
         sys.exit(1)
 
     domain = sys.argv[1].strip().lower()
