@@ -1,0 +1,966 @@
+=== Scan mdk.fr ===
+
+mdk.fr
+  └─[A]→ 51.15.187.166
+  └─[SOA]→ ns.lebureau.coop
+  └─[NS]→ ns1.lebureau.coop
+  └─[NS]→ ns2.lebureau.coop
+  └─[MX]→ smtpin-01.galae.net
+  └─[MX]→ smtpin-02.galae.net
+
+smtpin-01.galae.net
+  └─[A]→ 51.159.2.148
+  └─[PARENT]→ galae.net
+
+smtpin-02.galae.net
+  └─[A]→ 212.83.136.109
+  └─[PARENT]→ galae.net
+
+ns1.lebureau.coop
+  └─[AAAA]→ 2a0e:e701:1010::1
+  └─[A]→ 45.13.107.8
+  └─[PARENT]→ lebureau.coop
+
+lebureau.coop
+  └─[AAAA]→ 2a01:e34:ec4d:a570::2
+  └─[AAAA]→ 2a0e:e701:1010::1
+  └─[A]→ 45.13.107.8
+  └─[A]→ 78.196.218.87
+  └─[MX]→ mail.gentilsnuages.io
+  └─[SOA]→ ns.lebureau.coop
+  └─[NS]→ ns1.lebureau.coop
+  └─[NS]→ ns2.lebureau.coop
+  └─[BRUTE]→ www.lebureau.coop
+
+mail.gentilsnuages.io
+  └─[A]→ 45.13.107.8
+  └─[PARENT]→ gentilsnuages.io
+  └─[MX]→ mail.gentilsnuages.io
+
+ns2.lebureau.coop
+  └─[AAAA]→ 2a01:e34:ec4d:a570::2
+  └─[A]→ 78.196.218.87
+  └─[PARENT]→ lebureau.coop
+
+ns.lebureau.coop
+  └─[AAAA]→ 2a01:e34:ec4d:a570::2
+  └─[AAAA]→ 2a0e:e701:1010::1
+  └─[A]→ 45.13.107.8
+  └─[A]→ 78.196.218.87
+  └─[PARENT]→ lebureau.coop
+
+www.lebureau.coop
+  └─[A]→ 78.196.218.87
+  └─[PARENT]→ lebureau.coop
+
+=== Scan oteria.fr ===
+
+oteria.fr
+  └─[A]→ 198.202.211.1
+  └─[MX]→ alt1.aspmx.l.google.com
+  └─[MX]→ alt2.aspmx.l.google.com
+  └─[MX]→ alt3.aspmx.l.google.com
+  └─[MX]→ alt4.aspmx.l.google.com
+  └─[MX]→ aspmx.l.google.com
+  └─[NS]→ dns15.ovh.net
+  └─[SOA]→ dns15.ovh.net
+  └─[NS]→ ns15.ovh.net
+
+aspmx.l.google.com
+  └─[AAAA]→ 2a00:1450:400c:c1b::1a
+  └─[A]→ 74.125.206.26
+  └─[PARENT]→ l.google.com
+
+alt1.aspmx.l.google.com
+  └─[A]→ 192.178.213.27
+  └─[AAAA]→ 2a00:1450:4013:c1e::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt2.aspmx.l.google.com
+  └─[A]→ 142.251.127.27
+  └─[AAAA]→ 2a00:1450:4001:c21::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt3.aspmx.l.google.com
+  └─[A]→ 142.250.147.26
+  └─[AAAA]→ 2a00:1450:4025:c01::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt4.aspmx.l.google.com
+  └─[A]→ 172.253.152.26
+  └─[AAAA]→ 2a00:1450:4010:c22::1a
+  └─[PARENT]→ aspmx.l.google.com
+
+ns15.ovh.net
+  └─[AAAA]→ 2001:41d0:b00:ee00::2
+  └─[A]→ 5.39.114.9
+  └─[PARENT]→ ovh.net
+
+dns15.ovh.net
+  └─[AAAA]→ 2001:41d0:d00:f400::2
+  └─[A]→ 5.135.110.101
+  └─[PARENT]→ ovh.net
+
+=== Scan elysee.fr ===
+
+elysee.fr
+  └─[A]→ 185.194.81.29
+  └─[NS]→ a.ns.developpement-durable.gouv.fr
+  └─[SOA]→ a.ns.developpement-durable.gouv.fr
+  └─[NS]→ b.ns.developpement-durable.gouv.fr
+  └─[MX]→ mail0.elysee.fr
+  └─[MX]→ mail1.elysee.fr
+  └─[NS]→ nsa.perf1.fr
+  └─[NS]→ nsb.perf1.com
+  └─[NS]→ nsc.perf1.com
+
+mail0.elysee.fr
+  └─[A]→ 185.24.185.86
+  └─[PARENT]→ elysee.fr
+
+mail1.elysee.fr
+  └─[A]→ 185.24.185.82
+  └─[PARENT]→ elysee.fr
+
+b.ns.developpement-durable.gouv.fr
+  └─[A]→ 194.5.173.19
+  └─[PARENT]→ ns.developpement-durable.gouv.fr
+
+nsa.perf1.fr
+  └─[AAAA]→ 2a01:c8:100::100
+  └─[A]→ 81.92.94.100
+  └─[PARENT]→ perf1.fr
+
+a.ns.developpement-durable.gouv.fr
+  └─[A]→ 194.5.172.19
+  └─[PARENT]→ ns.developpement-durable.gouv.fr
+
+nsb.perf1.com
+  └─[AAAA]→ 2a01:c8:101::100
+  └─[A]→ 81.92.95.100
+  └─[PARENT]→ perf1.com
+
+nsc.perf1.com
+  └─[A]→ 152.89.172.100
+  └─[AAAA]→ 2a09:35c0:102::100
+  └─[PARENT]→ perf1.com
+
+=== Scan mamot.fr ===
+
+mamot.fr
+  └─[AAAA]→ 2001:67c:288::14
+  └─[A]→ 91.194.60.14
+  └─[MX]→ pi.lqdn.fr
+  └─[SOA]→ pi4.lqdn.fr
+  └─[NS]→ primary.heberge.info
+  └─[NS]→ secondary.heberge.info
+
+pi.lqdn.fr
+  └─[A]→ 185.34.33.14
+  └─[AAAA]→ 2a00:99a0:0:1000::14
+  └─[PARENT]→ lqdn.fr
+
+secondary.heberge.info
+  └─[A]→ 185.215.171.28
+  └─[AAAA]→ 2a00:99a0:f000::28
+  └─[PARENT]→ heberge.info
+
+heberge.info
+  └─[AAAA]→ 2001:67c:288::2
+  └─[A]→ 91.194.60.2
+  └─[MX]→ brassens.heberge.info
+  └─[SOA]→ brassens.heberge.info
+  └─[BRUTE]→ mail.heberge.info
+  └─[NS]→ ns1.octopuce.fr
+  └─[NS]→ ns2.octopuce.net
+  └─[BRUTE]→ www.heberge.info
+
+brassens.heberge.info
+  └─[AAAA]→ 2001:67c:288::2
+  └─[A]→ 91.194.60.2
+  └─[PARENT]→ heberge.info
+
+ns2.octopuce.net
+  └─[A]→ 185.215.171.28
+  └─[AAAA]→ 2a00:99a0:f000::28
+  └─[PARENT]→ octopuce.net
+
+ns1.octopuce.fr
+  └─[AAAA]→ 2001:67c:288::99
+  └─[A]→ 91.194.60.99
+  └─[PARENT]→ octopuce.fr
+
+www.heberge.info
+  └─[AAAA]→ 2001:67c:288::2
+  └─[A]→ 91.194.60.2
+  └─[PARENT]→ heberge.info
+
+mail.heberge.info
+  └─[AAAA]→ 2001:67c:288::2
+  └─[A]→ 91.194.60.2
+  └─[PARENT]→ heberge.info
+
+primary.heberge.info
+  └─[AAAA]→ 2001:67c:288::99
+  └─[A]→ 91.194.60.99
+  └─[PARENT]→ heberge.info
+
+pi4.lqdn.fr
+  └─[A]→ 185.34.33.14
+  └─[AAAA]→ 2a00:99a0:0:1000::14
+  └─[PARENT]→ lqdn.fr
+
+=== Scan google.fr ===
+
+google.fr
+  └─[A]→ 172.217.22.67
+  └─[AAAA]→ 2a00:1450:4007:81a::2003
+  └─[NS]→ ns1.google.com
+  └─[SOA]→ ns1.google.com
+  └─[NS]→ ns2.google.com
+  └─[NS]→ ns3.google.com
+  └─[NS]→ ns4.google.com
+  └─[MX]→ smtp.google.com
+
+smtp.google.com
+  └─[A]→ 108.177.15.26
+  └─[AAAA]→ 2a00:1450:400c:c04::1b
+  └─[AAAA]→ 2a00:1450:400c:c0d::1a
+  └─[AAAA]→ 2a00:1450:400c:c1d::1a
+  └─[AAAA]→ 2a00:1450:400c:c1d::1b
+  └─[A]→ 74.125.133.26
+  └─[A]→ 74.125.133.27
+  └─[A]→ 74.125.71.26
+  └─[A]→ 74.125.71.27
+  └─[PARENT]→ google.com
+
+ns2.google.com
+  └─[AAAA]→ 2001:4860:4802:34::a
+  └─[A]→ 216.239.34.10
+  └─[PARENT]→ google.com
+
+ns4.google.com
+  └─[AAAA]→ 2001:4860:4802:38::a
+  └─[A]→ 216.239.38.10
+  └─[PARENT]→ google.com
+
+ns1.google.com
+  └─[AAAA]→ 2001:4860:4802:32::a
+  └─[A]→ 216.239.32.10
+  └─[PARENT]→ google.com
+
+ns3.google.com
+  └─[AAAA]→ 2001:4860:4802:36::a
+  └─[A]→ 216.239.36.10
+  └─[PARENT]→ google.com
+
+=== Scan orange.fr ===
+
+orange.fr
+  └─[A]→ 193.252.117.135
+  └─[A]→ 193.252.148.46
+  └─[A]→ 81.52.142.219
+  └─[NS]→ ns1.orange.fr
+  └─[NS]→ ns2.orange.fr
+  └─[SOA]→ ns2.orange.fr
+  └─[NS]→ ns3.orange.fr
+  └─[NS]→ ns4.orange.fr
+  └─[MX]→ smtp-in.orange.fr
+  └─[MX]→ smtp-in2.orange.fr
+
+smtp-in2.orange.fr
+  └─[A]→ 80.12.24.83
+  └─[PARENT]→ orange.fr
+
+smtp-in.orange.fr
+  └─[A]→ 80.12.26.32
+  └─[PARENT]→ orange.fr
+
+ns3.orange.fr
+  └─[A]→ 80.10.200.224
+  └─[PARENT]→ orange.fr
+
+ns1.orange.fr
+  └─[AAAA]→ 2a01:cb04:2040:2::1
+  └─[A]→ 80.10.201.224
+  └─[PARENT]→ orange.fr
+
+ns2.orange.fr
+  └─[AAAA]→ 2a01:cb09:2040:6::1
+  └─[A]→ 80.10.202.224
+  └─[PARENT]→ orange.fr
+
+ns4.orange.fr
+  └─[AAAA]→ 2a01:cb09:2040:6::1
+  └─[A]→ 80.10.203.224
+  └─[PARENT]→ orange.fr
+
+=== Scan free.fr ===
+
+free.fr
+  └─[A]→ 212.27.48.10
+  └─[AAAA]→ 2a01:e0c:1::1
+  └─[NS]→ freens1-g20.free.fr
+  └─[SOA]→ freens1-g20.free.fr
+  └─[NS]→ freens2-g20.free.fr
+  └─[NS]→ freens3-scw.free.fr
+  └─[MX]→ mx1.free.fr
+  └─[MX]→ mx2.free.fr
+
+mx1.free.fr
+  └─[A]→ 212.27.48.6
+  └─[A]→ 212.27.48.7
+  └─[PARENT]→ free.fr
+
+mx2.free.fr
+  └─[A]→ 212.27.42.58
+  └─[A]→ 212.27.42.59
+  └─[PARENT]→ free.fr
+
+freens1-g20.free.fr
+  └─[A]→ 212.27.60.19
+  └─[AAAA]→ 2a01:e0c:1:1599::22
+  └─[PARENT]→ free.fr
+
+freens3-scw.free.fr
+  └─[AAAA]→ 2001:bc8:1203:102::
+  └─[A]→ 51.159.199.148
+  └─[PARENT]→ free.fr
+
+freens2-g20.free.fr
+  └─[A]→ 212.27.60.20
+  └─[AAAA]→ 2a01:e0c:1:1599::23
+  └─[PARENT]→ free.fr
+
+=== Scan lemonde.fr ===
+
+lemonde.fr
+  └─[A]→ 151.101.122.137
+  └─[MX]→ alt1.aspmx.l.google.com
+  └─[MX]→ alt2.aspmx.l.google.com
+  └─[MX]→ alt3.aspmx.l.google.com
+  └─[MX]→ alt4.aspmx.l.google.com
+  └─[MX]→ aspmx.l.google.com
+  └─[NS]→ ns-cloud-b1.googledomains.com
+  └─[SOA]→ ns-cloud-b1.googledomains.com
+  └─[NS]→ ns-cloud-b2.googledomains.com
+  └─[NS]→ ns-cloud-b3.googledomains.com
+  └─[NS]→ ns-cloud-b4.googledomains.com
+
+alt4.aspmx.l.google.com
+  └─[A]→ 172.253.152.26
+  └─[AAAA]→ 2a00:1450:4010:c22::1a
+  └─[PARENT]→ aspmx.l.google.com
+
+aspmx.l.google.com
+  └─[AAAA]→ 2a00:1450:400c:c1b::1a
+  └─[A]→ 74.125.206.26
+  └─[PARENT]→ l.google.com
+
+alt3.aspmx.l.google.com
+  └─[A]→ 142.250.147.26
+  └─[AAAA]→ 2a00:1450:4025:c01::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt2.aspmx.l.google.com
+  └─[A]→ 142.251.127.27
+  └─[AAAA]→ 2a00:1450:4001:c21::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt1.aspmx.l.google.com
+  └─[A]→ 192.178.213.27
+  └─[AAAA]→ 2a00:1450:4013:c1e::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+ns-cloud-b4.googledomains.com
+  └─[AAAA]→ 2001:4860:4802:38::6b
+  └─[A]→ 216.239.38.107
+  └─[PARENT]→ googledomains.com
+
+ns-cloud-b3.googledomains.com
+  └─[AAAA]→ 2001:4860:4802:36::6b
+  └─[A]→ 216.239.36.107
+  └─[PARENT]→ googledomains.com
+
+ns-cloud-b1.googledomains.com
+  └─[AAAA]→ 2001:4860:4802:32::6b
+  └─[A]→ 216.239.32.107
+  └─[PARENT]→ googledomains.com
+
+ns-cloud-b2.googledomains.com
+  └─[AAAA]→ 2001:4860:4802:34::6b
+  └─[A]→ 216.239.34.107
+  └─[PARENT]→ googledomains.com
+
+=== Scan sncf.com ===
+
+sncf.com
+  └─[A]→ 75.2.83.188
+  └─[A]→ 99.83.160.166
+  └─[MX]→ mxa-00363202.gslb.pphosted.com
+  └─[MX]→ mxb-00363202.gslb.pphosted.com
+  └─[NS]→ ns-1446.awsdns-52.org
+  └─[NS]→ ns-2003.awsdns-58.co.uk
+  └─[SOA]→ ns-2003.awsdns-58.co.uk
+  └─[NS]→ ns-483.awsdns-60.com
+  └─[NS]→ ns-627.awsdns-14.net
+
+mxa-00363202.gslb.pphosted.com
+  └─[A]→ 185.183.31.211
+  └─[PARENT]→ gslb.pphosted.com
+
+mxb-00363202.gslb.pphosted.com
+  └─[A]→ 205.220.184.181
+  └─[PARENT]→ gslb.pphosted.com
+
+ns-1446.awsdns-52.org
+  └─[A]→ 205.251.197.166
+  └─[AAAA]→ 2600:9000:5305:a600::1
+  └─[PARENT]→ awsdns-52.org
+
+ns-2003.awsdns-58.co.uk
+  └─[A]→ 205.251.199.211
+  └─[AAAA]→ 2600:9000:5307:d300::1
+  └─[PARENT]→ awsdns-58.co.uk
+
+ns-483.awsdns-60.com
+  └─[A]→ 205.251.193.227
+  └─[AAAA]→ 2600:9000:5301:e300::1
+  └─[PARENT]→ awsdns-60.com
+
+ns-627.awsdns-14.net
+  └─[A]→ 205.251.194.115
+  └─[AAAA]→ 2600:9000:5302:7300::1
+  └─[PARENT]→ awsdns-14.net
+
+=== Scan impots.gouv.fr ===
+
+impots.gouv.fr
+  └─[A]→ 145.242.11.100
+  └─[SOA]→ dns0.dgfip.finances.gouv.fr
+  └─[NS]→ dns1.impots.gouv.fr
+  └─[NS]→ dns2.impots.gouv.fr
+  └─[PARENT]→ gouv.fr
+  └─[MX]→ mail.dgfip.finances.gouv.fr
+
+mail.dgfip.finances.gouv.fr
+  └─[A]→ 145.242.11.31
+  └─[PARENT]→ dgfip.finances.gouv.fr
+
+dns2.impots.gouv.fr
+  └─[A]→ 145.242.11.204
+  └─[PARENT]→ impots.gouv.fr
+
+dns1.impots.gouv.fr
+  └─[A]→ 145.242.11.22
+  └─[PARENT]→ impots.gouv.fr
+
+dns0.dgfip.finances.gouv.fr
+  └─[A]→ 145.242.11.10
+  └─[PARENT]→ dgfip.finances.gouv.fr
+
+=== Scan service-public.fr ===
+
+service-public.fr
+  └─[A]→ 160.92.168.33
+  └─[NS]→ ns1.dila.fr
+  └─[SOA]→ ns1.dila.fr
+  └─[NS]→ ns2.dila.fr
+  └─[NS]→ ns3.dila.fr
+  └─[NS]→ ns4.dila.fr
+  └─[MX]→ relay1-c.dila.fr
+  └─[MX]→ relay2-c.dila.fr
+
+relay1-c.dila.fr
+  └─[A]→ 185.24.187.180
+  └─[PARENT]→ dila.fr
+
+relay2-c.dila.fr
+  └─[A]→ 185.24.187.181
+  └─[PARENT]→ dila.fr
+
+ns4.dila.fr
+  └─[A]→ 142.44.49.173
+  └─[PARENT]→ dila.fr
+
+ns1.dila.fr
+  └─[A]→ 185.24.187.176
+  └─[PARENT]→ dila.fr
+
+ns2.dila.fr
+  └─[A]→ 185.24.187.179
+  └─[PARENT]→ dila.fr
+
+ns3.dila.fr
+  └─[A]→ 82.210.57.93
+  └─[PARENT]→ dila.fr
+
+=== Scan cnrs.fr ===
+
+cnrs.fr
+  └─[A]→ 80.94.184.70
+  └─[NS]→ camus.dr15.cnrs.fr
+  └─[MX]→ mx1.cnrs.fr
+  └─[MX]→ mx2.cnrs.fr
+  └─[NS]→ ns0.cnrs.fr
+  └─[SOA]→ ns0.cnrs.fr
+  └─[NS]→ ns1.renater.fr
+  └─[NS]→ ns2.cnrs.fr
+  └─[NS]→ ns2.renater.fr
+  └─[NS]→ ns3.cnrs.fr
+  └─[SRV _sip._tls]→ sip.cnrs.fr
+
+mx1.cnrs.fr
+  └─[A]→ 185.116.133.243
+  └─[PARENT]→ cnrs.fr
+
+mx2.cnrs.fr
+  └─[A]→ 185.116.133.244
+  └─[PARENT]→ cnrs.fr
+
+ns2.cnrs.fr
+  └─[A]→ 193.52.36.172
+  └─[AAAA]→ 2001:660:500a:2103::10
+  └─[PARENT]→ cnrs.fr
+
+ns1.renater.fr
+  └─[A]→ 193.49.159.2
+  └─[AAAA]→ 2001:660:3001:4002::2
+  └─[PARENT]→ renater.fr
+
+ns2.renater.fr
+  └─[A]→ 193.49.159.9
+  └─[AAAA]→ 2001:660:3001:4002::9
+  └─[PARENT]→ renater.fr
+
+ns3.cnrs.fr
+  └─[A]→ 193.55.90.12
+  └─[AAAA]→ 2001:660:6608:5106::12
+  └─[PARENT]→ cnrs.fr
+
+ns0.cnrs.fr
+  └─[A]→ 195.220.197.10
+  └─[AAAA]→ 2001:660:500a:2210::10
+  └─[PARENT]→ cnrs.fr
+
+camus.dr15.cnrs.fr
+  └─[A]→ 147.210.72.192
+  └─[AAAA]→ 2001:660:6101:21::1
+  └─[PARENT]→ dr15.cnrs.fr
+  └─[MX]→ dumas.dr15.cnrs.fr
+
+dumas.dr15.cnrs.fr
+  └─[A]→ 147.210.72.194
+  └─[AAAA]→ 2001:660:6101:21::194
+  └─[PARENT]→ dr15.cnrs.fr
+  └─[MX]→ dumas.dr15.cnrs.fr
+
+sip.cnrs.fr
+  └─[A]→ 195.220.198.225
+  └─[A]→ 195.220.198.226
+  └─[A]→ 195.220.198.227
+  └─[A]→ 195.220.198.228
+  └─[PARENT]→ cnrs.fr
+
+=== Scan inria.fr ===
+
+inria.fr
+  └─[A]→ 128.93.162.83
+  └─[NS]→ dns-ext2.inria.fr
+  └─[NS]→ dns.cs.wisc.edu
+  └─[NS]→ dns.inria.fr
+  └─[SOA]→ dns.inria.fr
+  └─[MX]→ mail2-smtp-roc.national.inria.fr
+  └─[MX]→ mail3-smtp-sop.national.inria.fr
+  └─[NS]→ ns2.nic.fr
+
+mail2-smtp-roc.national.inria.fr
+  └─[A]→ 192.134.164.81
+  └─[PARENT]→ national.inria.fr
+
+mail3-smtp-sop.national.inria.fr
+  └─[A]→ 192.134.164.98
+  └─[PARENT]→ national.inria.fr
+
+dns.inria.fr
+  └─[A]→ 193.51.208.13
+  └─[PARENT]→ inria.fr
+
+ns2.nic.fr
+  └─[A]→ 192.93.0.4
+  └─[AAAA]→ 2001:660:3005:1::1:2
+  └─[PARENT]→ nic.fr
+
+dns-ext2.inria.fr
+  └─[A]→ 193.51.193.133
+  └─[PARENT]→ inria.fr
+
+dns.cs.wisc.edu
+  └─[A]→ 128.105.2.10
+  └─[PARENT]→ cs.wisc.edu
+  └─[MX]→ dns.cs.wisc.edu
+  └─[MX]→ shale.cs.wisc.edu
+
+shale.cs.wisc.edu
+  └─[A]→ 128.105.6.25
+  └─[PARENT]→ cs.wisc.edu
+  └─[MX]→ limestone.cs.wisc.edu
+  └─[MX]→ shale.cs.wisc.edu
+
+limestone.cs.wisc.edu
+  └─[A]→ 128.105.6.27
+  └─[PARENT]→ cs.wisc.edu
+  └─[MX]→ limestone.cs.wisc.edu
+  └─[MX]→ shale.cs.wisc.edu
+
+cs.wisc.edu
+  └─[A]→ 128.105.2.6
+  └─[NS]→ adns1.doit.wisc.edu
+  └─[SOA]→ adns1.doit.wisc.edu
+  └─[NS]→ adns2.doit.wisc.edu
+  └─[NS]→ adns3.doit.wisc.edu
+  └─[NS]→ adns4.doit.wisc.edu
+  └─[BRUTE]→ ftp.cs.wisc.edu
+  └─[SRV _xmpp-client._tcp]→ jabber.cs.wisc.edu
+  └─[SRV _xmpp-server._tcp]→ jabber.cs.wisc.edu
+  └─[MX]→ mxa-007b0c01.gslb.pphosted.com
+  └─[MX]→ mxb-007b0c01.gslb.pphosted.com
+  └─[BRUTE]→ smtp.cs.wisc.edu
+  └─[BRUTE]→ www.cs.wisc.edu
+
+mxa-007b0c01.gslb.pphosted.com
+  └─[A]→ 205.220.165.71
+
+mxb-007b0c01.gslb.pphosted.com
+  └─[A]→ 205.220.165.71
+
+adns3.doit.wisc.edu
+  └─[A]→ 144.92.104.21
+  └─[AAAA]→ 2607:f388:2:2001::100b
+  └─[AAAA]→ 2607:f388::a53:3
+
+adns1.doit.wisc.edu
+  └─[A]→ 144.92.9.21
+  └─[AAAA]→ 2607:f388:2:2001::100a
+  └─[AAAA]→ 2607:f388::a53:1
+
+adns4.doit.wisc.edu
+  └─[A]→ 128.6.1.132
+  └─[AAAA]→ 2620:0:d60:6::12
+
+adns2.doit.wisc.edu
+  └─[A]→ 144.92.20.99
+  └─[AAAA]→ 2607:f388::a53:2
+  └─[AAAA]→ 2607:f388:d:2::1006
+
+jabber.cs.wisc.edu
+  └─[CNAME]→ babble.cs.wisc.edu
+
+www.cs.wisc.edu
+  └─[A]→ 75.2.33.159
+  └─[A]→ 99.83.210.234
+  └─[MX]→ limestone.cs.wisc.edu
+  └─[MX]→ shale.cs.wisc.edu
+
+smtp.cs.wisc.edu
+  └─[A]→ 128.105.6.4
+  └─[CNAME]→ smtp-01.cs.wisc.edu
+
+ftp.cs.wisc.edu
+  └─[A]→ 128.105.2.21
+  └─[CNAME]→ ftp1.cs.wisc.edu
+
+=== Scan france.tv ===
+
+france.tv
+  └─[AAAA]→ 2a02:26f0:9100:20::17c0:76d0
+  └─[AAAA]→ 2a02:26f0:9100:20::17c0:76d1
+  └─[A]→ 96.17.207.26
+  └─[A]→ 96.17.207.30
+  └─[NS]→ a1-242.akam.net
+  └─[NS]→ a13-67.akam.net
+  └─[NS]→ a14-64.akam.net
+  └─[NS]→ a22-65.akam.net
+  └─[NS]→ a3-66.akam.net
+  └─[SOA]→ a3-66.akam.net
+  └─[NS]→ a8-67.akam.net
+  └─[MX]→ de-smtp-inbound-1.mimecast.com
+  └─[MX]→ de-smtp-inbound-2.mimecast.com
+  └─[BRUTE]→ www.france.tv
+
+de-smtp-inbound-2.mimecast.com
+  └─[A]→ 194.104.108.22
+  └─[A]→ 194.104.110.22
+  └─[PARENT]→ mimecast.com
+
+de-smtp-inbound-1.mimecast.com
+  └─[A]→ 194.104.108.22
+  └─[A]→ 194.104.110.22
+  └─[PARENT]→ mimecast.com
+
+a14-64.akam.net
+  └─[A]→ 184.26.161.64
+  └─[AAAA]→ 2600:1480:1800::40
+  └─[PARENT]→ akam.net
+
+a1-242.akam.net
+  └─[A]→ 193.108.91.242
+  └─[AAAA]→ 2600:1401:2::f2
+  └─[PARENT]→ akam.net
+
+a13-67.akam.net
+  └─[A]→ 2.22.230.67
+  └─[AAAA]→ 2600:1480:800::43
+  └─[PARENT]→ akam.net
+
+a22-65.akam.net
+  └─[A]→ 23.211.61.65
+  └─[AAAA]→ 2600:1480:7800::41
+  └─[PARENT]→ akam.net
+
+a3-66.akam.net
+  └─[AAAA]→ 2600:1408:1c::42
+  └─[A]→ 96.7.49.66
+  └─[PARENT]→ akam.net
+
+a8-67.akam.net
+  └─[A]→ 2.16.40.67
+  └─[AAAA]→ 2600:1403:a::43
+  └─[PARENT]→ akam.net
+
+www.france.tv
+  └─[AAAA]→ 2a02:26f0:680:a6::215:f3cf
+  └─[AAAA]→ 2a02:26f0:680:a6::215:f3d1
+  └─[A]→ 96.16.249.175
+  └─[A]→ 96.16.249.176
+  └─[PARENT]→ france.tv
+
+=== Scan ameli.fr ===
+
+ameli.fr
+  └─[A]→ 89.31.147.88
+  └─[NS]→ dns1.cscdns.net
+  └─[SOA]→ dns1.cscdns.net
+  └─[NS]→ dns2.cscdns.net
+  └─[MX]→ smtpagt1.assurance-maladie.fr
+  └─[MX]→ smtpagt2.assurance-maladie.fr
+
+smtpagt1.assurance-maladie.fr
+  └─[A]→ 93.174.145.55
+  └─[PARENT]→ assurance-maladie.fr
+
+smtpagt2.assurance-maladie.fr
+  └─[A]→ 93.174.144.25
+  └─[PARENT]→ assurance-maladie.fr
+
+dns1.cscdns.net
+  └─[A]→ 156.154.130.100
+  └─[AAAA]→ 2610:a1:1022::100
+  └─[PARENT]→ cscdns.net
+
+dns2.cscdns.net
+  └─[A]→ 156.154.131.100
+  └─[AAAA]→ 2610:a1:1023::100
+  └─[PARENT]→ cscdns.net
+
+=== Scan pole-emploi.fr ===
+
+pole-emploi.fr
+  └─[A]→ 185.215.64.1
+  └─[NS]→ dns1.pole-emploi.fr
+  └─[SOA]→ dns1.pole-emploi.fr
+  └─[NS]→ dns2.pole-emploi.fr
+  └─[NS]→ nsa.perf1.fr
+  └─[NS]→ nsb.perf1.com
+  └─[NS]→ nsc.perf1.com
+  └─[SRV _sip._tls]→ sipdir.online.lync.com
+  └─[MX]→ smtp1.pole-emploi.fr
+
+smtp1.pole-emploi.fr
+  └─[A]→ 185.215.65.16
+  └─[PARENT]→ pole-emploi.fr
+
+dns1.pole-emploi.fr
+  └─[A]→ 185.215.65.8
+  └─[PARENT]→ pole-emploi.fr
+
+nsa.perf1.fr
+  └─[AAAA]→ 2a01:c8:100::100
+  └─[A]→ 81.92.94.100
+  └─[PARENT]→ perf1.fr
+
+nsc.perf1.com
+  └─[A]→ 152.89.172.100
+  └─[AAAA]→ 2a09:35c0:102::100
+  └─[PARENT]→ perf1.com
+
+nsb.perf1.com
+  └─[AAAA]→ 2a01:c8:101::100
+  └─[A]→ 81.92.95.100
+  └─[PARENT]→ perf1.com
+
+dns2.pole-emploi.fr
+  └─[A]→ 185.215.65.9
+  └─[PARENT]→ pole-emploi.fr
+
+sipdir.online.lync.com
+  └─[PARENT]→ online.lync.com
+
+=== Scan doctolib.fr ===
+
+doctolib.fr
+  └─[AAAA]→ 2a14:7ac0::70
+  └─[A]→ 93.115.102.100
+  └─[MX]→ alt1.aspmx.l.google.com
+  └─[MX]→ alt2.aspmx.l.google.com
+  └─[MX]→ alt3.aspmx.l.google.com
+  └─[MX]→ alt4.aspmx.l.google.com
+  └─[MX]→ aspmx.l.google.com
+  └─[NS]→ bob.ns.cloudflare.com
+  └─[SOA]→ bob.ns.cloudflare.com
+  └─[NS]→ naomi.ns.cloudflare.com
+
+aspmx.l.google.com
+  └─[AAAA]→ 2a00:1450:400c:c1b::1a
+  └─[A]→ 74.125.206.26
+  └─[PARENT]→ l.google.com
+
+alt1.aspmx.l.google.com
+  └─[A]→ 192.178.213.27
+  └─[AAAA]→ 2a00:1450:4013:c1e::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt2.aspmx.l.google.com
+  └─[A]→ 142.251.127.27
+  └─[AAAA]→ 2a00:1450:4001:c21::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt3.aspmx.l.google.com
+  └─[A]→ 142.250.147.26
+  └─[AAAA]→ 2a00:1450:4025:c01::1b
+  └─[PARENT]→ aspmx.l.google.com
+
+alt4.aspmx.l.google.com
+  └─[A]→ 172.253.152.26
+  └─[AAAA]→ 2a00:1450:4010:c22::1a
+  └─[PARENT]→ aspmx.l.google.com
+
+bob.ns.cloudflare.com
+  └─[A]→ 108.162.193.104
+  └─[A]→ 172.64.33.104
+  └─[A]→ 173.245.59.104
+  └─[AAAA]→ 2606:4700:58::adf5:3b68
+  └─[AAAA]→ 2803:f800:50::6ca2:c168
+  └─[AAAA]→ 2a06:98c1:50::ac40:2168
+  └─[PARENT]→ ns.cloudflare.com
+
+naomi.ns.cloudflare.com
+  └─[A]→ 108.162.192.208
+  └─[A]→ 172.64.32.208
+  └─[A]→ 173.245.58.208
+  └─[AAAA]→ 2606:4700:50::adf5:3ad0
+  └─[AAAA]→ 2803:f800:50::6ca2:c0d0
+  └─[AAAA]→ 2a06:98c1:50::ac40:20d0
+  └─[PARENT]→ ns.cloudflare.com
+
+=== Scan wikipedia.org ===
+
+wikipedia.org
+  └─[A]→ 185.15.58.224
+  └─[AAAA]→ 2a02:ec80:600:ed1a::1
+  └─[MX]→ mx-in1001.wikimedia.org
+  └─[MX]→ mx-in2001.wikimedia.org
+  └─[NS]→ ns0.wikimedia.org
+  └─[SOA]→ ns0.wikimedia.org
+  └─[NS]→ ns1.wikimedia.org
+  └─[NS]→ ns2.wikimedia.org
+
+mx-in1001.wikimedia.org
+  └─[A]→ 208.80.155.102
+  └─[AAAA]→ 2620:0:861:4:208:80:155:102
+  └─[PARENT]→ wikimedia.org
+
+mx-in2001.wikimedia.org
+  └─[A]→ 208.80.153.75
+  └─[AAAA]→ 2620:0:860:3:208:80:153:75
+  └─[PARENT]→ wikimedia.org
+
+ns0.wikimedia.org
+  └─[A]→ 208.80.154.238
+  └─[AAAA]→ 2620:0:861:53::1
+  └─[PARENT]→ wikimedia.org
+
+ns1.wikimedia.org
+  └─[A]→ 208.80.153.231
+  └─[AAAA]→ 2620:0:860:53::1
+  └─[PARENT]→ wikimedia.org
+
+ns2.wikimedia.org
+  └─[A]→ 198.35.27.27
+  └─[AAAA]→ 2a02:ec80:53::1
+  └─[PARENT]→ wikimedia.org
+
+=== Scan gouv.fr ===
+
+=== Scan laposte.fr ===
+
+laposte.fr
+  └─[A]→ 178.213.66.203
+  └─[NS]→ ns1.laposte.fr
+  └─[NS]→ ns2.laposte.net
+  └─[NS]→ ns3.laposte.net
+  └─[SOA]→ ns3.laposte.net
+  └─[NS]→ ns4.laposte.net
+  └─[NS]→ ns5.laposte.net
+  └─[NS]→ ns6.laposte.org
+  └─[MX]→ rpi0i691.laposte.fr
+  └─[MX]→ rpi0i693.laposte.fr
+  └─[MX]→ rpi0i751.laposte.fr
+  └─[MX]→ rpi0i753.laposte.fr
+
+rpi0i753.laposte.fr
+  └─[A]→ 185.16.253.12
+  └─[PARENT]→ laposte.fr
+
+rpi0i691.laposte.fr
+  └─[A]→ 178.213.67.12
+  └─[PARENT]→ laposte.fr
+
+rpi0i693.laposte.fr
+  └─[A]→ 185.16.253.10
+  └─[PARENT]→ laposte.fr
+
+rpi0i751.laposte.fr
+  └─[A]→ 178.213.66.12
+  └─[PARENT]→ laposte.fr
+
+ns4.laposte.net
+  └─[A]→ 178.213.64.50
+  └─[AAAA]→ 2a03:6f80:300:200::32
+  └─[PARENT]→ laposte.net
+
+ns5.laposte.net
+  └─[A]→ 185.16.252.18
+  └─[AAAA]→ 2a03:6f81:200:100::12
+  └─[PARENT]→ laposte.net
+
+ns1.laposte.fr
+  └─[A]→ 178.213.64.132
+  └─[AAAA]→ 2a03:6f80:300:200::35
+  └─[PARENT]→ laposte.fr
+
+ns3.laposte.net
+  └─[A]→ 185.16.252.17
+  └─[AAAA]→ 2a03:6f81:200:100::11
+  └─[PARENT]→ laposte.net
+
+ns6.laposte.org
+  └─[A]→ 185.16.252.16
+  └─[AAAA]→ 2a03:6f81:200:100::15
+  └─[PARENT]→ laposte.org
+
+ns2.laposte.net
+  └─[A]→ 178.213.64.49
+  └─[AAAA]→ 2a03:6f80:300:200::31
+  └─[PARENT]→ laposte.net
+
