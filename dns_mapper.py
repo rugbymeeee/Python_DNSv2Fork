@@ -8,16 +8,38 @@ MAX_DEPTH = 5
 TLD_LIST = {'.com', '.fr', '.net', '.org', '.io', '.de', '.uk', '.us', '.ca', '.au', '.co'}          
 
 COMMON_SUBDOMAINS = [
-    "www", "mail", "smtp", "ftp", "vpn",
-    "api", "dev", "test", "prod",
-    "shop", "news", "community"
+    "www", "mail", "smtp", "imap", "pop3", "ftp", "sftp", "vpn",
+    "api", "dev", "test", "staging", "prod", "production",
+    "shop", "store", "news", "blog", "community", "forum",
+    "admin", "panel", "dashboard", "console", "control",
+    "webmail", "roundcube", "squirrelmail",
+    "cpanel", "whm", "plesk",
+    "git", "gitlab", "github", "bitbucket", "jenkins",
+    "mysql", "db", "database", "redis", "mongo",
+    "app", "application", "web", "mobile", "m",
+    "cdn", "static", "media", "images", "assets",
+    "docs", "documentation", "wiki", "help", "support",
+    "download", "downloads", "files", "upload",
+    "status", "monitoring", "metrics", "health",
+    "auth", "login", "signin", "signup", "register",
+    "secure", "ssl", "tls", "certificate",
+    "intranet", "extranet", "employees", "staff",
+    "crm", "erp", "hr", "finance", "accounting",
+    "mail2", "mail3", "mx", "mx1", "mx2",
+    "ns", "ns1", "ns2", "ns3", "dns", "dns1", "dns2",
+    "old", "new", "legacy", "beta", "alpha", "demo",
+    "remote", "cloud", "backup", "archive",
+    "autoconfig", "autodiscover", "cpcontacts", "cpcalendars"
 ]
 
 SRV_RECORDS = [
-    "_sip._tcp",
-    "_sip._tls",
-    "_xmpp-server._tcp",
-    "_xmpp-client._tcp"
+    "_sip._tcp", "_sip._udp", "_sip._tls",
+    "_xmpp-server._tcp", "_xmpp-client._tcp",
+    "_ldap._tcp", "_kerberos._tcp",
+    "_http._tcp", "_https._tcp",
+    "_imap._tcp", "_imaps._tcp",
+    "_smtp._tcp", "_smtps._tcp",
+    "_pop3._tcp", "_pop3s._tcp"
 ]
 
 
@@ -100,12 +122,19 @@ class DNSMapper:
             if not any(parent.endswith(tld) for tld in TLD_LIST):
                 self.explore_domain(parent, depth + 1)
 
-        # Ne bruter les sous-domaines que si ce n'est pas un domaine générique
-        if not any(domain.endswith(tld) for tld in TLD_LIST):
+        is_base_domain = len(parts) == 2 or (len(parts) == 3)
+        if is_base_domain and depth <= 1:
             for sub in COMMON_SUBDOMAINS:
                 subdomain = f"{sub}.{domain}"
-                if self.query(subdomain, "A"):
-                    self.add_edge(domain, subdomain, "BRUTE")
+                # Vérifier l'existence avec A, AAAA ou CNAME
+                exists = False
+                for rtype in ["A", "AAAA", "CNAME"]:
+                    if self.query(subdomain, rtype):
+                        exists = True
+                        break
+
+                if exists:
+                    self.add_edge(domain, subdomain, "SUBDOMAIN")
                     self.explore_domain(subdomain, depth + 1)
 
 
