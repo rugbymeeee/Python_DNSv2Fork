@@ -21,25 +21,20 @@ SRV_RECORDS = [
 
 
 def load_subdomain_wordlist(filename="directory-list-2.3-small.txt", max_entries=MAX_SUBDOMAINS):
-    """
-    Charge une wordlist de sous-domaines depuis un fichier.
-    Filtre les commentaires et lignes vides, et limite le nombre d'entrées.
-    """
     subdomains = []
     wordlist_path = os.path.join(os.path.dirname(__file__), filename)
 
-    with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as f:
+    with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as f: # Ouvrir le fichier, le lire ligne par ligne, et ajouter les sous-domaines à la liste subdomains[]
         for line in f:
-            line = line.strip()
-            if line and not line.startswith('#'):
-                if line.replace('-', '').replace('_', '').isalnum():
-                    subdomains.append(line.lower())
+            line = line.strip() # Enlève les espaces et les retours à la ligne
+            if line and not line.startswith('#'): # Lire uniquement les lignes sans # 
+                if line.replace('-', '').replace('_', '').isalnum(): # Remplace - et _ par rien et vérifie si le string est alphanumérique
+                    subdomains.append(line.lower()) # Ajouter le sous-domaine à la liste en minuscules
                     if len(subdomains) >= max_entries:
                         break
-    return subdomains
+    return subdomains # Liste finale de nos sous domaines à tester
 
 
-# Charger la wordlist de sous-domaines
 COMMON_SUBDOMAINS = load_subdomain_wordlist()
 
 
