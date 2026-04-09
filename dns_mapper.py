@@ -1,36 +1,13 @@
 import dns.resolver
 import sys
 from collections import defaultdict
+import os
 
-MAX_DOMAINS = 100        
+MAX_DOMAINS = 300  # Augmenté pour plus de découvertes
 DNS_TIMEOUT = 2
-MAX_DEPTH = 5
+MAX_DEPTH = 6  # Augmenté pour scan plus profond
+MAX_SUBDOMAINS = 300  # Limite le nombre de sous-domaines à tester
 TLD_LIST = {'.com', '.fr', '.net', '.org', '.io', '.de', '.uk', '.us', '.ca', '.au', '.co'}          
-
-COMMON_SUBDOMAINS = [
-    "www", "mail", "smtp", "imap", "pop3", "ftp", "sftp", "vpn",
-    "api", "dev", "test", "staging", "prod", "production",
-    "shop", "store", "news", "blog", "community", "forum",
-    "admin", "panel", "dashboard", "console", "control",
-    "webmail", "roundcube", "squirrelmail",
-    "cpanel", "whm", "plesk",
-    "git", "gitlab", "github", "bitbucket", "jenkins",
-    "mysql", "db", "database", "redis", "mongo",
-    "app", "application", "web", "mobile", "m",
-    "cdn", "static", "media", "images", "assets",
-    "docs", "documentation", "wiki", "help", "support",
-    "download", "downloads", "files", "upload",
-    "status", "monitoring", "metrics", "health",
-    "auth", "login", "signin", "signup", "register",
-    "secure", "ssl", "tls", "certificate",
-    "intranet", "extranet", "employees", "staff",
-    "crm", "erp", "hr", "finance", "accounting",
-    "mail2", "mail3", "mx", "mx1", "mx2",
-    "ns", "ns1", "ns2", "ns3", "dns", "dns1", "dns2",
-    "old", "new", "legacy", "beta", "alpha", "demo",
-    "remote", "cloud", "backup", "archive",
-    "autoconfig", "autodiscover", "cpcontacts", "cpcalendars"
-]
 
 SRV_RECORDS = [
     "_sip._tcp", "_sip._udp", "_sip._tls",
@@ -41,6 +18,29 @@ SRV_RECORDS = [
     "_smtp._tcp", "_smtps._tcp",
     "_pop3._tcp", "_pop3s._tcp"
 ]
+
+
+def load_subdomain_wordlist(filename="directory-list-2.3-small.txt", max_entries=MAX_SUBDOMAINS):
+    """
+    Charge une wordlist de sous-domaines depuis un fichier.
+    Filtre les commentaires et lignes vides, et limite le nombre d'entrées.
+    """
+    subdomains = []
+    wordlist_path = os.path.join(os.path.dirname(__file__), filename)
+
+    with open(wordlist_path, 'r', encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#'):
+                if line.replace('-', '').replace('_', '').isalnum():
+                    subdomains.append(line.lower())
+                    if len(subdomains) >= max_entries:
+                        break
+    return subdomains
+
+
+# Charger la wordlist de sous-domaines
+COMMON_SUBDOMAINS = load_subdomain_wordlist()
 
 
 class DNSMapper:
@@ -114,16 +114,22 @@ class DNSMapper:
                 self.explore_domain(target, depth + 1)
 
         
+        # Remonter vers le domaine parent pour découvrir la hiérarchie complète
+        # Exemple : ns.octopuce.fr -> octopuce.fr -> fr
         parts = domain.split(".")
         if len(parts) > 2 and depth < MAX_DEPTH - 1:
             parent = ".".join(parts[1:])
             self.add_edge(domain, parent, "PARENT")
-            # Ne pas explorer les domaines génériques (TLD)
-            if not any(parent.endswith(tld) for tld in TLD_LIST):
+            # Ne pas explorer les TLDs purs (juste "fr", "com", etc.)
+            # Mais explorer les domaines comme "octopuce.fr"
+            is_pure_tld = len(parent.split(".")) == 1 or parent in TLD_LIST
+            if not is_pure_tld:
                 self.explore_domain(parent, depth + 1)
 
-        is_base_domain = len(parts) == 2 or (len(parts) == 3)
-        if is_base_domain and depth <= 1:
+        parts = domain.split(".")
+        is_base_domain = len(parts) == 2 or (len(parts) == 3 and parts[-2] == 'co')
+
+        if is_base_domain:
             for sub in COMMON_SUBDOMAINS:
                 subdomain = f"{sub}.{domain}"
                 # Vérifier l'existence avec A, AAAA ou CNAME
@@ -134,6 +140,7 @@ class DNSMapper:
                         break
 
                 if exists:
+                    print(f"[+] Trouvé: {subdomain}")
                     self.add_edge(domain, subdomain, "SUBDOMAIN")
                     self.explore_domain(subdomain, depth + 1)
 
@@ -154,5 +161,6 @@ if __name__ == "__main__":
     domain = sys.argv[1].strip().lower()
 
     mapper = DNSMapper()
+
     mapper.explore_domain(domain)
     mapper.print_report()
