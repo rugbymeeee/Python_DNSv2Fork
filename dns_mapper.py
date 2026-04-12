@@ -1,3 +1,6 @@
+from re import match
+import re
+
 import dns.resolver
 import sys
 from collections import defaultdict
@@ -6,8 +9,8 @@ import os
 MAX_DOMAINS = 300  # Augmenté pour plus de découvertes
 DNS_TIMEOUT = 2
 MAX_DEPTH = 6  # Augmenté pour scan plus profond
-MAX_SUBDOMAINS = 300  # Limite le nombre de sous-domaines à tester
-TLD_LIST = {'.com', '.fr', '.net', '.org', '.io', '.de', '.uk', '.us', '.ca', '.au', '.co'}          
+MAX_SUBDOMAINS = 100  # Limite le nombre de sous-domaines à tester
+TLD_LIST = {'.com', '.fr', '.net', '.org', '.io', '.de', '.uk', '.us', '.ca', '.au', '.co'} # TLD communs 
 
 SRV_RECORDS = [
     "_sip._tcp", "_sip._udp", "_sip._tls",
@@ -35,8 +38,9 @@ def load_subdomain_wordlist(filename="directory-list-2.3-small.txt", max_entries
     return subdomains # Liste finale de nos sous domaines à tester
 
 
-COMMON_SUBDOMAINS = load_subdomain_wordlist()
+COMMON_SUBDOMAINS = load_subdomain_wordlist() 
 
+REGEX_IP = r"^(?:\d{1,3}\.){3}\d{1,3}$" 
 
 class DNSMapper:
     def __init__(self):
@@ -122,7 +126,7 @@ class DNSMapper:
                 self.explore_domain(parent, depth + 1)
 
         parts = domain.split(".")
-        is_base_domain = len(parts) == 2 or (len(parts) == 3 and parts[-2] == 'co')
+        is_base_domain = len(parts) == 2 or (len(parts) == 3 and parts[-2] == 'co' or parts[-2] == 'gouv')
 
         if is_base_domain:
             for sub in COMMON_SUBDOMAINS:
@@ -147,11 +151,33 @@ class DNSMapper:
                 print(f"  └─[{label}]→ {dst}")
 
 
+def reverse_dns_lookup(ip):
+    try:
+        resolver = dns.resolver.Resolver()
+        resolver.timeout = DNS_TIMEOUT
+        resolver.lifetime = DNS_TIMEOUT
+        result = resolver.resolve_address(ip)
+        return [str(r.target).rstrip(".") for r in result]
+    except Exception:
+        return []
+
+
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Utilisation: python dns_mapper.py <domain>")
+    if len(sys.argv) != 2 :
+        print("Utilisation: python dns_mapper.py <domain> or python dns_mapper.py <IP>")
         sys.exit(1)
+    elif sys.argv[1] and match(REGEX_IP, sys.argv[1].strip()):
+        ip = sys.argv[1].strip()
+        domains = reverse_dns_lookup(ip)
+        if domains:
+            print(f"Résultats de la recherche inversée pour {ip}:")
+            for d in domains:
+                print(f"  - {d}")
+        else:
+            print(f"Aucun résultat trouvé pour l'IP: {ip}")
+        sys.exit(0)
+    
 
     domain = sys.argv[1].strip().lower()
 
