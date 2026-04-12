@@ -1,11 +1,12 @@
-from re import match
-import re
-
+from re import match, sub
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import dns.resolver
+import ipaddress
 import sys
 from collections import defaultdict
 import os
 
+MAX_WORKERS = 20 
 MAX_DOMAINS = 300  # Augmenté pour plus de découvertes
 DNS_TIMEOUT = 2
 MAX_DEPTH = 6  # Augmenté pour scan plus profond
@@ -21,6 +22,7 @@ SRV_RECORDS = [
     "_smtp._tcp", "_smtps._tcp",
     "_pop3._tcp", "_pop3s._tcp"
 ]
+
 
 
 def load_subdomain_wordlist(filename="directory-list-2.3-small.txt", max_entries=MAX_SUBDOMAINS):
@@ -42,6 +44,17 @@ COMMON_SUBDOMAINS = load_subdomain_wordlist()
 
 REGEX_IP = r"^(?:\d{1,3}\.){3}\d{1,3}$" 
 
+def reverse_dns_lookup(ip):
+    try:
+        resolver = dns.resolver.Resolver()
+        resolver.timeout = DNS_TIMEOUT
+        resolver.lifetime = DNS_TIMEOUT
+        result = resolver.resolve_address(ip)
+        return [str(r.target).rstrip(".") for r in result]
+    except Exception:
+        return []
+    
+
 class DNSMapper:
     def __init__(self):
         self.seen_domains = set()
@@ -61,6 +74,8 @@ class DNSMapper:
     def add_edge(self, src, dst, label):
         self.graph[src].add((dst, label))
 
+    
+
 
     def explore_domain(self, domain, depth=0):
         if domain in self.seen_domains:
@@ -79,6 +94,7 @@ class DNSMapper:
         for rtype in ["A", "AAAA"]:
             for r in self.query(domain, rtype):
                 self.add_edge(domain, r.address, rtype)
+        
 
         # CNAME
         for r in self.query(domain, "CNAME"):
@@ -112,6 +128,9 @@ class DNSMapper:
                 self.add_edge(domain, target, f"SRV {srv}")
                 self.explore_domain(target, depth + 1)
 
+        # IP Neighbors en range IP +3 -3 juste un revserse dns pour les IPs trouvées
+       
+
         
         # Remonter vers le domaine parent pour découvrir la hiérarchie complète
         # Exemple : ns.octopuce.fr -> octopuce.fr -> fr
@@ -126,23 +145,26 @@ class DNSMapper:
                 self.explore_domain(parent, depth + 1)
 
         parts = domain.split(".")
-        is_base_domain = len(parts) == 2 or (len(parts) == 3 and parts[-2] == 'co' or parts[-2] == 'gouv')
+        is_base_domain = len(parts) == 2 or (len(parts) == 3 and (parts[-2] in ('co', 'gouv')))
 
         if is_base_domain:
-            for sub in COMMON_SUBDOMAINS:
+            def check_subdomain(sub):
                 subdomain = f"{sub}.{domain}"
-                # Vérifier l'existence avec A, AAAA ou CNAME
-                exists = False
-                for rtype in ["A", "AAAA", "CNAME"]:
-                    if self.query(subdomain, rtype):
-                        exists = True
-                        break
-
-                if exists:
+                if any(self.query(subdomain, rtype) for rtype in ["A", "AAAA", "CNAME"]):
                     print(f"[+] Trouvé: {subdomain}")
                     self.add_edge(domain, subdomain, "SUBDOMAIN")
                     self.explore_domain(subdomain, depth + 1)
 
+            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+                executor.map(check_subdomain, COMMON_SUBDOMAINS)
+
+
+        for r in self.query(domain, "A"):
+            ip = ipaddress.IPv4Address(r.address)
+            for offset in range(-2, 3, 1):
+                neighbor = ip + offset
+                for rev_domain in reverse_dns_lookup(str(neighbor)):
+                    self.add_edge(domain, rev_domain, f"IP Neighbor {neighbor}")
 
     def print_report(self):
         for src, edges in self.graph.items():
@@ -151,15 +173,7 @@ class DNSMapper:
                 print(f"  └─[{label}]→ {dst}")
 
 
-def reverse_dns_lookup(ip):
-    try:
-        resolver = dns.resolver.Resolver()
-        resolver.timeout = DNS_TIMEOUT
-        resolver.lifetime = DNS_TIMEOUT
-        result = resolver.resolve_address(ip)
-        return [str(r.target).rstrip(".") for r in result]
-    except Exception:
-        return []
+
 
 
 
