@@ -42,8 +42,10 @@ def load_subdomain_wordlist(filename="directory-list-2.3-small.txt", max_entries
 
 COMMON_SUBDOMAINS = load_subdomain_wordlist() 
 
+# Regex d'une IP v4 
 REGEX_IP = r"^(?:\d{1,3}\.){3}\d{1,3}$" 
 
+# Fonction pour faire un reverse DNS lookup sur une IP donnée
 def reverse_dns_lookup(ip):
     try:
         resolver = dns.resolver.Resolver()
@@ -61,6 +63,7 @@ class DNSMapper:
         self.graph = defaultdict(set)
         self.count = 0
 
+
     def query(self, domain, rtype):
         try:
             resolver = dns.resolver.Resolver()
@@ -73,8 +76,6 @@ class DNSMapper:
 
     def add_edge(self, src, dst, label):
         self.graph[src].add((dst, label))
-
-    
 
 
     def explore_domain(self, domain, depth=0):
@@ -95,7 +96,6 @@ class DNSMapper:
             for r in self.query(domain, rtype):
                 self.add_edge(domain, r.address, rtype)
         
-
         # CNAME
         for r in self.query(domain, "CNAME"):
             cname = str(r.target).rstrip(".")
@@ -128,10 +128,6 @@ class DNSMapper:
                 self.add_edge(domain, target, f"SRV {srv}")
                 self.explore_domain(target, depth + 1)
 
-        # IP Neighbors en range IP +3 -3 juste un revserse dns pour les IPs trouvées
-       
-
-        
         # Remonter vers le domaine parent pour découvrir la hiérarchie complète
         # Exemple : ns.octopuce.fr -> octopuce.fr -> fr
         parts = domain.split(".")
@@ -145,6 +141,7 @@ class DNSMapper:
                 self.explore_domain(parent, depth + 1)
 
         parts = domain.split(".")
+        # Pour prendre en compte les domaines de second niveau comme "co.uk" ou "gouv.fr"
         is_base_domain = len(parts) == 2 or (len(parts) == 3 and (parts[-2] in ('co', 'gouv')))
 
         if is_base_domain:
@@ -155,10 +152,12 @@ class DNSMapper:
                     self.add_edge(domain, subdomain, "SUBDOMAIN")
                     self.explore_domain(subdomain, depth + 1)
 
+            # Utiliser un ThreadPoolExecutor pour tester les sous-domaines en parallèle (plus rapide)
             with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
                 executor.map(check_subdomain, COMMON_SUBDOMAINS)
 
 
+        # IP Neighbors en range IP +3 -3 juste un revserse dns pour les IPs trouvées
         for r in self.query(domain, "A"):
             ip = ipaddress.IPv4Address(r.address)
             for offset in range(-2, 3, 1):
@@ -166,6 +165,7 @@ class DNSMapper:
                 for rev_domain in reverse_dns_lookup(str(neighbor)):
                     self.add_edge(domain, rev_domain, f"IP Neighbor {neighbor}")
 
+    # Affichage du graphe de manière lisible (arborescence graphique)
     def print_report(self):
         for src, edges in self.graph.items():
             print(f"\n{src}")
@@ -176,26 +176,29 @@ class DNSMapper:
 
 
 
-
+# Le main pour lancer le script
 if __name__ == "__main__":
-    if len(sys.argv) != 2 :
-        print("Utilisation: python dns_mapper.py <domain> or python dns_mapper.py <IP>")
-        sys.exit(1)
-    elif sys.argv[1] and match(REGEX_IP, sys.argv[1].strip()):
-        ip = sys.argv[1].strip()
-        domains = reverse_dns_lookup(ip)
-        if domains:
-            print(f"Résultats de la recherche inversée pour {ip}:")
-            for d in domains:
-                print(f"  - {d}")
-        else:
-            print(f"Aucun résultat trouvé pour l'IP: {ip}")
-        sys.exit(0)
-    
+    try:
+        if len(sys.argv) != 2 : # Le script ne peut contenir qu'un seul arg
+            print("Utilisation: python dns_mapper.py <domain> or python dns_mapper.py <IP>") # Petit message d'aide pour l'utilisateur si 2 arguments ou plus sont fournis
+            sys.exit(1) 
+        elif sys.argv[1] and match(REGEX_IP, sys.argv[1].strip()): # Si l'argument ressemble à une IP, faire un reverse DNS lookup
+            ip = sys.argv[1].strip() 
+            domains = reverse_dns_lookup(ip)
+            if domains:
+                print(f"Résultats de la recherche inversée pour {ip}:")
+                for d in domains:
+                    print(f"  - {d}")
+            else:
+                print(f"Aucun résultat trouvé pour l'IP: {ip}")
+            sys.exit(0)
+        
 
-    domain = sys.argv[1].strip().lower()
+        domain = sys.argv[1].strip().lower() # Si l'argument est un domaine, le nettoyer (strip) et le mettre en minuscules (lower)
 
-    mapper = DNSMapper()
-
-    mapper.explore_domain(domain)
-    mapper.print_report()
+        mapper = DNSMapper()
+        mapper.explore_domain(domain)
+        mapper.print_report()
+    except KeyboardInterrupt:
+        print("\n[!] Interrompu par l'utilisateur.")
+        mapper.print_report()
